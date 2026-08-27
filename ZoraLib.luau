@@ -2930,7 +2930,7 @@ local Library = { } do
         Items.Root:MakeDraggable(Items.Main.Instance)
         Items.Root:MakeDraggable(Items.Rail.Instance)
 
-        table.insert(Library.Windows, Window
+        table.insert(Library.Windows, Window)
 
         local TrafBar = MakeFrame({
             Parent = Items.TopBar.Instance,
