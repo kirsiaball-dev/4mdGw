@@ -2933,32 +2933,49 @@ local Library = { } do
         table.insert(Library.Windows, Window)
 
         local TrafBar = MakeFrame({
-            Parent = Items.TopBar.Instance,
-            Anchor = Vector2.new(1, 0),
-            Pos = UDim2.new(1, -100, 0, 4),
-            Size = UDim2.fromOffset(31, 11),
-            Z = 6
+            Parent = Items.Root.Instance,
+            Pos = UDim2.fromOffset(MainX + W - 57, -8),
+            Size = UDim2.fromOffset(51, 19),
+            Raw = Color3.fromRGB(13, 17, 32),
+            Round = 10,
+            Z = 10
+        })
+
+        Library:Create("UIStroke", {
+            Parent = TrafBar.Instance,
+            Color = Color3.fromRGB(37, 45, 69),
+            Thickness = 0.8
         })
 
         local RedBtn = MakeFrame({
             Parent = TrafBar.Instance,
-            Pos = UDim2.fromOffset(0, 0),
+            Pos = UDim2.fromOffset(4, 4),
             Size = UDim2.fromOffset(11, 11),
             Raw = Color3.fromRGB(255, 95, 86),
             Round = 20,
-            Z = 7
+            Z = 11
         })
-        local RedHit = MakeButton({ Parent = RedBtn.Instance, Z = 9 })
+        local RedHit = MakeButton({ Parent = RedBtn.Instance, Z = 13 })
 
         local YellowBtn = MakeFrame({
             Parent = TrafBar.Instance,
-            Pos = UDim2.fromOffset(20, 0),
+            Pos = UDim2.fromOffset(20, 4),
             Size = UDim2.fromOffset(11, 11),
             Raw = Color3.fromRGB(255, 189, 68),
             Round = 20,
-            Z = 7
+            Z = 11
         })
-        local YellowHit = MakeButton({ Parent = YellowBtn.Instance, Z = 9 })
+        local YellowHit = MakeButton({ Parent = YellowBtn.Instance, Z = 13 })
+
+        local GreenBtn = MakeFrame({
+            Parent = TrafBar.Instance,
+            Pos = UDim2.fromOffset(36, 4),
+            Size = UDim2.fromOffset(11, 11),
+            Raw = Color3.fromRGB(40, 205, 65),
+            Round = 20,
+            Z = 11
+        })
+        local GreenHit = MakeButton({ Parent = GreenBtn.Instance, Z = 13 })
 
         RedBtn:OnHover(function()
             RedBtn:Tween({ BackgroundColor3 = Color3.fromRGB(200, 60, 50) })
@@ -2970,6 +2987,12 @@ local Library = { } do
             YellowBtn:Tween({ BackgroundColor3 = Color3.fromRGB(210, 148, 35) })
         end, function()
             YellowBtn:Tween({ BackgroundColor3 = Color3.fromRGB(255, 189, 68) })
+        end)
+
+        GreenBtn:OnHover(function()
+            GreenBtn:Tween({ BackgroundColor3 = Color3.fromRGB(25, 165, 45) })
+        end, function()
+            GreenBtn:Tween({ BackgroundColor3 = Color3.fromRGB(40, 205, 65) })
         end)
 
         local LogoHolder = Library:Create("ScreenGui", {
@@ -3078,6 +3101,10 @@ local Library = { } do
 
         YellowHit:Connect("MouseButton1Down", function()
             SetMinimized(true)
+        end)
+
+        GreenHit:Connect("MouseButton1Down", function()
+            Window:SetOpen(not Window.IsOpen)
         end)
 
         LogoHit:Connect("MouseButton1Down", function()
